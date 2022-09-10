@@ -29,8 +29,9 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 
 model = LinearRegression()
-model.fit(xtrain, ytrain)
-ypred = model.predict(xtest)
+lrm =model.fit(xtrain, ytrain)
+ypred = lrm.predict(xtest)
+print("Coeficients and Interception: ",lrm.coef_, lrm.intercept_)
 
 #Métricas
 r2 = r2_score(ytest, ypred)

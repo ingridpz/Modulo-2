@@ -54,6 +54,6 @@ print("Mean:", scores.mean())
 print("Standard deviation:", scores.std())
 
 # Predicciones
-preds = ypred[0:9]
+preds = ypred[:10]
 print(preds.round())
-print(ytest[0:9])
+print(ytest[:10])

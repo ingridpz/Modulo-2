@@ -53,7 +53,7 @@ print("Scores:", scores)
 print("Mean:", scores.mean())
 print("Standard deviation:", scores.std())
 
-# Predicciones
+# Comparar predicciones
 preds = ypred[:10]
 print(preds.round())
 print(ytest[:10])

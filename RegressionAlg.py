@@ -1,100 +1,85 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[62]:
-
-
-#Regresión Logística
-
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
+import math
+
+#Cargar los datos 
+df = pd.read_csv("C:/Users/Antos/Documents/R/iris (1).data")
+df.columns = ["sepal length", "sepal width", "petal length", "petal width","species"]
 
 
-# In[63]:
+#Label Encoding
+df.replace('Iris-versicolor', "Iris-versicolour", inplace = True)
+df.replace('Iris-setosa',0, inplace =True)
+df.replace('Iris-versicolour', 1, inplace = True)
+df.replace('Iris-virginica',2, inplace =True)
+pd.to_numeric(df["species"])
+#El algoritmo será de clasificación binaria por lo que se remueve una clase para predecir
+df = df[0:100]
 
+#Función para dividir el dataset en entrenamiento y prueba
+def split_train_test(data, test_ratio):
+    shuffled_indices = np.random.permutation(len(data))
+    test_set_size = int(len(data)*test_ratio)
+    test_indices = shuffled_indices[:test_set_size]
+    train_indices = shuffled_indices[test_set_size:]
+    return data.iloc[test_indices], data.iloc[train_indices]
 
-#Cargar los datos
-df = pd.read_csv("C:/Users/Antos/Downloads/data.csv")
-
-
-# In[64]:
-
-
-df.diagnosis = [1 if each == "M" else 0 for each in df.diagnosis]
-y = df['diagnosis']
-x = df.drop(['diagnosis'], axis=1)
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.15, random_state=42)
-
-
-# In[65]:
-
-
-def sigmoide(x):
-    h = 1/(1+ np.exp(-x))
-    return h
-
-
-# In[66]:
-
+#Dividir el dataset
+test, train = split_train_test(df, 0.2)
+x_test = test.drop(['species'], axis=1)
+y_test = test['species']
+x_train = train.drop(['species'], axis=1)
+y_train = train['species']
 
 #Algoritmo de Regresión Logística
-def RegresionLogistica (x,y):
-    a = 0.001 #learning rate
-    iters = 1000 #iteraciones
-    n_muestras, n_variables = x.shape
-   
+def RegresionLogistica(X, y, a, n_iters):
+    theta = np.zeros(X.shape[1])
+    n = y.size
+    J = np.zeros(n_iters)
+    for i in range(n_iters):
+        # Calcular la hipótesis
+        h = sigmoid(X.dot(theta))
+        # Calcular el gradiente
+        gradiente = (1/n)*X.T.dot(h-y)
+        # Actualizar los parámetros
+        theta -= a * gradiente
+        # Calcular la función de costo
+        J[i] = FuncionCosto(theta, X, y)
+    return theta, J
 
-    weights = np.zeros(n_variables) #vector de pesos
-    t0 = 0 #theta 0
+#Función sigmoide
+def sigmoide(x):
+    h = 1/(1+np.exp(-x))
+    return h
 
-    for k in range(iters):
-        xl = np.dot(x, weights)+t0 #vector con los pesos y  bias
-        h = 1/(1+ np.exp(-xl))  #aplicar la función sigmoide
-        
-        #gradiente descendente
-        dw = (1/n_muestras)*np.dot(x.T,(h-y)) #derivada de theta j
-        dt0 = (1/n_muestras)*np.sum(h-y) #derivada de theta 0
-        
-        weights -= a*dw  #actualizar los pesos
-        t0 -= a*dt0 #actualizar theta 0    
+#Función de costo
+def FuncionCosto(theta, X, y):
+    m = y.size
+    h = sigmoid(X.dot(theta))
+    J = (1/m)*(-y.dot(np.log(h))-(1-y).dot(np.log(1-h)))
+    return J
 
+#Entrenar el modelo
+a=0.001
+n_iters = 1000
+theta, J =RegresionLogistica(x_train, y_train,a, n_iters )
+print(theta)
 
-# In[67]:
+#Generar predicciones
+def predict(theta, X):
+    predictions = sigmoid(X.dot(theta))
+    predictions= [1 if i > 0.5 else 0 for i in predictions]
+    return predictions
 
+predictions = predict(theta, x_test)
+print(predictions)
+print(y_test)
 
-#función para determinar las precicsión del modelo
-def accuracy(y, y_r):
-    accuracy = np.sum(y == y_r) / len(y)
-    return accuracy
-
-
-# In[68]:
-
-
-#Ajustar el modelo
-RegresionLogistica(x_train, y_train)
-
-
-# In[73]:
-
-
-#Hacer predicciones
-n1, n2 = x_test.shape
-wpred = np.zeros(n2) #vector de pesos
-x_pred= np.dot(x_test, wpred ) + 0
-pred = sigmoide(x_pred)
-pred= [1 if i > 0.5 else 0 for i in pred]
-
-
-# In[74]:
-
-
-accuracy(y_test,pred)
-
-
-# In[ ]:
-
-
-
-
+#Métricas
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import r2_score
+accuracy = accuracy_score(y_test, predictions)
+r2 = r2_score(y_test, predictions)
+print("Accuracy Score: ", accuracy)
+print("R2 score: ", r2)

@@ -52,3 +52,8 @@ tree_rmse_scores = np.sqrt(-scores)
 print("Scores:", scores)
 print("Mean:", scores.mean())
 print("Standard deviation:", scores.std())
+
+# Predicciones
+preds = ypred[:10]
+print(preds.round())
+print(ytest[:10])

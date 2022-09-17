@@ -32,3 +32,18 @@ Se utilizó 85% de los datos para el entrenamiento del modelo y un 15% para prob
 | Accuracy Score  | 0.8695 |
 | R2| 0.8907 |
 | Mse|  0.0656  |
+
+## Resultados
+A partir de la implementación del modelo de Regresión Logística, se obtuvieron las siguientes predicciones:
+| id | Valor Esperado | Predicción |
+| ---|----------------| ------ |
+| 1  |1 | 1   |
+| 2| 0 |0|
+| 3|  2 |2 |
+| 4 | 1 |  1  |
+| 5  | 1 |  2  |
+| 6  | 0 |   0 |
+| 7  | 1 |    1|
+| 8  | 2 |   2 |
+| 9  | 1 |   1 |
+| 10  | 1 |   2 |

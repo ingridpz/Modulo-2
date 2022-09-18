@@ -14,7 +14,7 @@ df.replace('Iris-versicolour', 1, inplace = True)
 df.replace('Iris-virginica',2, inplace =True)
 pd.to_numeric(df["species"])
 #El algoritmo será de clasificación binaria por lo que se remueve una clase para predecir
-df = df[0:100]
+df = df[df['species'] <2]
 
 #Función para dividir el dataset en entrenamiento y prueba
 def split_train_test(data, test_ratio):
@@ -72,8 +72,18 @@ def predict(theta, X):
     return predictions
 
 predictions = predict(theta, x_test)
-print(predictions)
-print(y_test)
+preds = predictions
+for a in range(0, len(preds)):
+    if preds[a] == 0:
+        preds[a] = "Iris-Setosa"
+    elif preds[a]==1:
+        preds[a] = "Iris-Versicolour"
+print("Predicciones \n", preds)
+y_test2 = y_test.copy()
+y_test2.replace(0,'Iris-setosa', inplace =True)
+y_test2.replace(1,'Iris-versicolour', inplace=True)
+print("Valor esperado: \n", y_test2)
+
 
 #Métricas
 from sklearn.metrics import accuracy_score

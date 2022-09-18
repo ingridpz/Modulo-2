@@ -1,15 +1,15 @@
+#Implementación de un modelo de Machine Learning co
 import pandas as pd
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 
 #Importar el dataset
-df = pd.read_csv("C:/Users/Antos/Documents/R/iris (1).data")
-df.columns = ["sepal length", "sepal width", "petal length", "petal width","species"]
-
-#Calcular correlación
-corr = df.corr()
+iris = load_iris()
+df = pd.DataFrame(iris.data, columns = iris.feature_names)
+df['target'] = iris.target
+targets = iris.target_names
+print(targets)
 
 #Dividir el dataset
 x = df.drop(["species"], axis=1)
@@ -53,7 +53,26 @@ print("Scores:", scores)
 print("Mean:", scores.mean())
 print("Standard deviation:", scores.std())
 
+# Predicciones
+y_pred= lrm.predict(xtest)
+ypred = np.round(y_pred)
+
+print("Predicciones: ")
+
+for i in range (len(ypred)):
+    if ypred[i]==1.0:
+        print("Iris-Versicolor \n")
+    elif ypred[i] == 2.0:
+        print("Iris-Virginica \n")
+    else:
+        print("Iris-Setosa \n")
+
 # Comparar predicciones
-preds = ypred[:10]
-print(preds.round())
-print(ytest[:10])
+print("Valores del set de prueba: ")
+for i in range (len(ytest)):
+    if ytest.iloc[i]==1:
+        print("Iris-Versicolor \n")
+    elif ytest.iloc[i] == 2:
+        print("Iris-Virginica \n")
+    else:
+        print("Iris-Setosa \n")

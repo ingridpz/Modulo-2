@@ -40,17 +40,17 @@ Se utilizó 80% de los datos para el entrenamiento del modelo y un 20% para prob
 Se obtuvieron 14 predicciones correspondientes al conjunto de pruebas, los resultados obtenidos en comparación con los resultados esperados han sido los siguientes:
 | id | Valor Esperado | Predicción |
 | ---|----------------| ------ |
-| 1  |1 | 1   |
-| 2| 0 |0|
-| 3|  0 |0 |
-| 4 | 1 |  1  |
-| 5  | 1 |  1  |
-| 6  | 1 |   1 |
-| 7  | 1 |    1|
-| 8  | 0 |   0 |
-| 9  | 0|   0|
-| 10  | 0 |  0 |
-| 11 | 0 |   0 |
-| 12  | 1 |   1 |
-| 13  | 1 |   0 |
-| 14  | 1 |   1 |
+| 1  |Iris-Versicolour|Iris-Versicolour  |
+| 2| Iris-Setosa |Iris-Setosa|
+| 3|  Iris-Setosa |Iris-Setosa |
+| 4 |Iris-Versicolour| Iris-Versicolour|
+| 5  | Iris-Versicolour |  Iris-Versicolour  |
+| 6  |Iris-Versicolour |  Iris-Versicolour |
+| 7  |Iris-Versicolour |   Iris-Versicolour|
+| 8  | Iris-Setosa |   Iris-Setosa |
+| 9  | Iris-Setosa|   Iris-Setosa|
+| 10  |Iris-Setosa |  Iris-Setosa |
+| 11 | Iris-Setosa|   Iris-Setosa |
+| 12  |Iris-Versicolour | Iris-Versicolour|
+| 13  | Iris-Versicolour |  Iris-Setosa |
+| 14  | Iris-Versicolour|   Iris-Versicolour|

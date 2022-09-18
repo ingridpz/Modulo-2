@@ -16,6 +16,7 @@ La base de datos Iris es un dataset multivariable que consiste en 50 muestras de
 * Petal Length
 * Petal Width
 * Species
+
 En donde la columna Species es la variable que se busca predecir.
 El archivo que contiene el dataset puede ser encontrado en https://www.kaggle.com/uciml/iris. Dentro del repositorio se encuentra tanto el dataset utilizado `iris.data` y un archivo con la descripción del dataset `iris.names`.
 

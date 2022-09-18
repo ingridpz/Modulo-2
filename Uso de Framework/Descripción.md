@@ -37,13 +37,13 @@ Se utilizó 85% de los datos para el entrenamiento del modelo y un 15% para prob
 A partir de la implementación del modelo de Regresión Logística, se obtuvieron las siguientes predicciones:
 | id | Valor Esperado | Predicción |
 | ---|----------------| ------ |
-| 1  |1 | 1   |
-| 2| 0 |0|
-| 3|  2 |2 |
-| 4 | 1 |  1  |
-| 5  | 1 |  2  |
-| 6  | 0 |   0 |
-| 7  | 1 |    1|
-| 8  | 2 |   2 |
-| 9  | 1 |   1 |
-| 10  | 1 |   2 |
+| 1  |Iris-Versicolour| Iris-Versicolour   |
+| 2| Iris-Setosa |Iris-Setosa|
+| 3|  Iris Virginica |Iris Virginica |
+| 4 | Iris-Versicolour |  Iris-Versicolour  |
+| 5  |Iris-Versicolour | Iris Virginica  |
+| 6  | Iris-Setosa |   Iris-Setosa |
+| 7  | Iris-Versicolour |   Iris-Versicolour|
+| 8  | Iris Virginica |  Iris Virginica |
+| 9  |Iris-Versicolour |   Iris-Versicolour |
+| 10  | Iris-Versicolour |   Iris Virginica |

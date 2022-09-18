@@ -18,7 +18,7 @@ La base de datos Iris es un dataset multivariable que consiste en 50 muestras de
 * Species
 
 En donde la columna Species es la variable que se busca predecir.
-El archivo que contiene el dataset puede ser encontrado en https://www.kaggle.com/uciml/iris. Dentro del repositorio se encuentra tanto el dataset utilizado `iris.data` y un archivo con la descripción del dataset `iris.names`.
+El archivo que contiene el dataset puede ser encontrado en https://www.kaggle.com/uciml/iris. Se utilizó el dataset incluido en la librería `sklearn.datasets` para entrenar y probar el modelo.
 
 ## Métrica de desempeño
 Las métricas utilizadas para evaluar el desempeño del modelo , utilizando la librería `sklearn. metrics` han sido:
@@ -31,7 +31,7 @@ Se utilizó 85% de los datos para el entrenamiento del modelo y un 15% para prob
 | Métrica | Valor |
 | --------------- | ------ |
 | Accuracy Score  | 0.8695 |
-| R2| 0.8907 |
+| R2| 0.94 |
 | Mse|  0.0656  |
 
 ## Resultados
